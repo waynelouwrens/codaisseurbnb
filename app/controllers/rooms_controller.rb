@@ -6,6 +6,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @themes = @room.themes
   end
 
   def new
@@ -13,10 +14,8 @@ class RoomsController < ApplicationController
   end
 
   def create
-    room_params = params.require(:room).permit(:home_type, :room_type,
-    :accommodate, :bedroom_count, :bathroom_count, :listing_name,
-    :description, :address, :has_tv, :has_kitchen, :has_internet,
-    :has_heating, :has_airco, :price, :active )
+
+    @room = Room.new(room_params)
 
     if @room.save
       redirect_to @room
@@ -32,15 +31,20 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
 
-    room_params = params.require(:room).permit(:home_type, :room_type,
-    :accommodate, :bedroom_count, :bathroom_count, :listing_name,
-    :description, :address, :has_tv, :has_kitchen, :has_internet,
-    :has_heating, :has_airco, :price, :active )
-
     if @room.update_attributes(room_params)
       redirect_to @room
     else
       render 'edit'
     end
   end
+
+  private
+
+  def room_params
+    params.require(:room).permit(:home_type, :room_type,
+    :accommodate, :bedroom_count, :bathroom_count, :listing_name,
+    :description, :address, :has_tv, :has_kitchen, :has_internet,
+    :has_heating, :has_airco, :price, :active, theme_ids:[])
+  end
+
 end

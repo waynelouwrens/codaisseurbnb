@@ -1,9 +1,18 @@
+
+Theme.destroy_all
+Room.destroy_all
 User.destroy_all
 
-wayne = User.create!(
-  email: 'wayne@codaisseur.com',
-  password: '123456'
-)
+modern_and_minimal = Theme.create(name: "Modern and Minimal")
+sleek_and_sophisticated = Theme.create(name: "Sleek and Sophisticated")
+warm_and_cozy = Theme.create(name: "Warm and Cozy")
+room_with_a_view = Theme.create(name: "Room with a View")
+elegant_and_ornate = Theme.create(name: "Elegant and Ornate")
+a_mans_touch = Theme.create(name: "A Man's Touch")
+white_washed = Theme.create(name: "White Washed")
+tempting_terrace = Theme.create(name: "Tempting Terrace")
+
+wayne = User.create!( email: 'wayne@codaisseur.com', password: '123456')
 
 Room.create!(
   home_type: "House",
@@ -21,5 +30,6 @@ Room.create!(
   has_internet: true,
   price: 100,
   active: true,
-  user: wayne
+  user: wayne,
+  themes: [white_washed, tempting_terrace]
 )
