@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20171028120347) do
     t.string "home_type"
     t.string "room_type"
     t.integer "accommodate"
+    t.integer "bedroom_count"
+    t.integer "bathroom_count"
     t.string "listing_name"
     t.text "description"
     t.string "address"
