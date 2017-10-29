@@ -1,7 +1,8 @@
+Profile.destroy_all
+Booking.destroy_all
 Photo.destroy_all
 Theme.destroy_all
 Room.destroy_all
-Profile.destroy_all
 User.destroy_all
 
 modern_and_minimal = Theme.create(name: "Modern and Minimal")
@@ -14,8 +15,10 @@ white_washed = Theme.create(name: "White Washed")
 tempting_terrace = Theme.create(name: "Tempting Terrace")
 
 wayne = User.create!( email: 'wayne@codaisseur.com', password: '123456')
+marco = User.create!( email: 'marco@codaisseur.com', password: '123456')
+talitha = User.create!( email: 'talitha@codaisseur.com', password: '123456')
 
-room_1 = Room.create!(
+room1 = Room.create!(
       home_type: "House",
       room_type: "Shared",
       accommodate: 2,
@@ -33,6 +36,20 @@ room_1 = Room.create!(
       active: true,
       user: wayne,
       themes: [white_washed, tempting_terrace]
+      photos: [photo1]
     )
 
-photo1 = Photo.create!(remote_image_url: "http://res.cloudinary.com/waynelouwrens/image/upload/v1509218388/Room1_weghsx.jpg", room: room_1)
+photo1 = Photo.create!(remote_image_url: "https://goo.gl/5Gujqt")
+photo2 = Photo.create!(remote_image_url: "https://goo.gl/qv5aTA")
+photo3 = Photo.create!(remote_image_url: "https://goo.gl/fk0Hc4")
+
+photo4 = Photo.create!(remote_image_url: "https://goo.gl/Tm8psm")
+photo5 = Photo.create!(remote_image_url: "https://goo.gl/fSpcCU")
+photo6 = Photo.create!(remote_image_url: "https://goo.gl/UruxUV")
+
+photo7 = Photo.create!(remote_image_url: "https://goo.gl/CndGn5")
+photo8 = Photo.create!(remote_image_url: "https://goo.gl/KpvVO2")
+photo9 = Photo.create!(remote_image_url: "https://goo.gl/sOtcGp")
+
+Booking.create!(room: room1, user: marco, price: 50, total: 100, starts_at: 10.days.from_now, ends_at: 12.days.from_now)
+Booking.create!(room: room1, user: talitha, price: 50, total: 200, starts_at: 20.days.from_now, ends_at: 24.days.from_now)
